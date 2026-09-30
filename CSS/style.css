@@ -1,0 +1,669 @@
+/* =================================
+   CSS VARIABLES
+================================= */
+:root {
+    --primary: #800000;
+    --secondary: #f3bd1a;
+    --dark: #800000;
+    --light: #f5f9ff;
+    --white: #ffffff;
+    --radius: 16px;
+}
+/* =================================
+   RESET
+================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    font-family: Arial, sans-serif;
+    color: var(--dark);
+    background-color: var(--white);
+    line-height: 1.6;
+}
+
+/* =================================
+   NAVBAR
+================================= */
+.navbar {
+    width: 100%;
+    padding: 1rem 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--white);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.3s, padding 0.3s;
+}
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary);
+}
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    flex-shrink: 0;
+}
+nav {
+    display: flex;
+    gap: 1.5rem;
+}
+nav a {
+    position: relative;
+    display: inline-block;
+    color: var(--dark);
+    text-decoration: none;
+    transition: transform 0.3s, color 0.3s;
+    padding-bottom: 4px;
+}
+/* =================================
+   SANDEQ BOAT ANIMATION
+================================= */
+@keyframes sailAcross {
+    0% {
+        left: -80px;
+        transform: translateY(-50%) rotate(-3deg);
+    }
+    100% {
+        left: calc(100% + 80px);
+        transform: translateY(-50%) rotate(1deg);
+    }
+}
+
+.header-sandeq {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.15;
+    z-index: 0;
+    pointer-events: none;
+    will-change: transform;
+}
+
+.header-sandeq-1 {
+    width: 150px;
+    height: 100px;
+    animation: sailAcross 35s linear infinite;
+    animation-delay: -10s;
+}
+
+.header-sandeq-2 {
+    width: 120px;
+    height: 80px;
+    animation: sailAcross 40s linear infinite;
+    animation-delay: -25s;
+}
+
+.header-sandeq-3 {
+    width: 130px;
+    height: 90px;
+    animation: sailAcross 45s linear infinite;
+    animation-delay: -35s;
+}
+
+.header-sandeq::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: url('fotosandeq2_nobg.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+/* =================================
+   PSEUDO-CLASS :hover
+================================= */
+nav a:hover {
+    color: var(--primary);
+    transform: scale(1.15);
+}
+nav a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary);
+    transition: width 0.3s ease;
+}
+nav a:hover::after {
+    width: 100%;
+}
+/* =================================
+   HERO
+================================= */
+.hero {
+    min-height: 100vh;
+    padding: 5vh 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    background: linear-gradient(-45deg, #caf800, #800000, #0245ff, #d70404);
+    background-size: 550% 550%;
+    animation: gradientShift 30s ease infinite;
+}
+@keyframes gradientShift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+.hero-text {
+    width: 55%;
+}
+.greeting {
+    font-size: 1.2rem;
+}
+h1 {
+    font-size: 5vw;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+}
+.hero-text > p {
+    max-width: 600px;
+    color: var(--white);
+
+}
+/* =================================
+   BUTTON
+================================= */
+.btn {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.8rem 1.5rem;
+    background-color: var(--primary);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 50px;
+    transition: transform 0.3s, background-color 0.3s;
+}
+.btn:hover {
+    background-color: var(--dark);
+    transform: scale(1.05);
+}
+/* =================================
+   HERO CIRCLE
+================================= */
+.hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.circle {
+    position: relative;
+    width: 30vw;
+    height: 30vw;
+    max-width: 350px;
+    max-height: 350px;
+    min-width: 180px;
+    min-height: 180px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary);
+    color: white;
+    font-size: 4rem;
+    font-weight: bold;
+    overflow: hidden;
+    animation: floating 3s ease-in-out infinite;
+}
+.circle img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0;
+    animation: fadeSlide 9s infinite;
+}
+.circle img:nth-child(1) { animation-delay: 0s; }
+.circle img:nth-child(2) { animation-delay: 3s; }
+.circle img:nth-child(3) { animation-delay: 6s; }
+
+@keyframes fadeSlide {
+    0%   { opacity: 0; }
+    5%   { opacity: 1; }
+    28%  { opacity: 1; }
+    33%  { opacity: 0; }
+    100% { opacity: 0; }
+}
+/* =================================
+   ANIMATION
+================================= */
+@keyframes floating {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+/* =================================
+   SECTION
+================================= */
+.section {
+    padding: 6rem 8%;
+    text-align: center;
+}
+.section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    position: relative;
+}
+.section h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    margin: 10px auto;
+    background-color: var(--secondary);
+    border-radius: 10px;
+}
+.section-description {
+    max-width: 700px;
+    margin: auto;
+    margin-bottom: 3rem;
+}
+/* =================================
+   CARDS
+================================= */
+.cards {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+.card {
+    flex: 1;
+    padding: 2rem;
+    background-color: var(--light);
+    border-radius: var(--radius);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+}
+.icon {
+    width: 60px;
+    height: 60px;
+    margin: auto;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 15px;
+    font-weight: bold;
+}
+/* =================================
+   SKILL
+================================= */
+.skill-section {
+    background-color: var(--light);
+}
+.skills {
+    max-width: 700px;
+    margin: auto;
+    text-align: left;
+}
+.skill {
+    margin-bottom: 1.5rem;
+}
+.progress {
+    width: 100%;
+    height: 12px;
+    margin-top: 5px;
+    background-color: #dbeafe;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.progress-bar {
+    height: 100%;
+    background-color: var(--primary);
+    border-radius: 20px;
+}
+.html { width: 90%; }
+.css { width: 85%; }
+.js { width: 70%; }
+/* =================================
+   FORM
+================================= */
+form {
+    max-width: 600px;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+input,
+textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #dbeafe;
+    border-radius: 10px;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.3s;
+}
+input:focus,
+textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+button {
+    padding: 1rem;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--primary);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+button:hover {
+    background-color: var(--dark);
+    transform: translateY(-2px);
+}
+/* =================================
+   TIMELINE (PENGALAMAN)
+================================= */
+.timeline {
+    max-width: 700px;
+    margin: auto;
+    text-align: left;
+}
+.timeline-item {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    background-color: var(--light);
+    border-left: 4px solid var(--primary);
+    border-radius: var(--radius);
+}
+.timeline-date {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--primary);
+}
+.timeline-item h3 {
+    margin-bottom: 0.5rem;
+}
+/* =================================
+   GALERI
+================================= */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    max-width: 900px;
+    margin: auto;
+}
+.gallery-item {
+    overflow: hidden;
+    border-radius: var(--radius);
+    aspect-ratio: 1 / 1;
+}
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+    cursor: pointer;
+    display: block;
+}
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+/* =================================
+   GALERI - LIHAT SEMUA
+================================= */
+.gallery-more {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+.btn-see-all {
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s;
+}
+.btn-see-all:hover {
+    background-color: var(--dark);
+    transform: scale(1.05);
+}
+
+.gallery-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 3000;
+    justify-content: center;
+    align-items: flex-start;
+    overflow-y: auto;
+    padding: 3rem 1rem;
+}
+/* Ditampilkan lewat CSS :target, bukan JavaScript */
+.gallery-modal:target {
+    display: flex;
+}
+.gallery-modal-content {
+    background-color: var(--white);
+    border-radius: var(--radius);
+    max-width: 1000px;
+    width: 100%;
+    padding: 2rem;
+    position: relative;
+}
+.gallery-modal-content h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+}
+.gallery-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--dark);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+.gallery-modal-close:hover {
+    color: var(--primary);
+}
+.gallery-modal-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    max-height: 70vh;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+.gallery-modal-grid a {
+    display: block;
+}
+.gallery-modal-grid img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+    display: block;
+    transition: transform 0.3s;
+}
+.gallery-modal-grid img:hover {
+    transform: scale(1.05);
+}
+@media (max-width: 768px) {
+    .gallery-modal-content {
+        padding: 1.2rem;
+    }
+    .gallery-modal-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-height: 75vh;
+    }
+}
+@media (max-width: 480px) {
+    .gallery-modal-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.6rem;
+    }
+}
+/* =================================
+   LIGHTBOX
+================================= */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    justify-content: center;
+    align-items: center;
+    z-index: 4000;
+}
+/* Ditampilkan lewat CSS :target, bukan JavaScript */
+.lightbox:target {
+    display: flex;
+}
+.lightbox img {
+    max-width: 85%;
+    max-height: 85%;
+    border-radius: 8px;
+}
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 2.5rem;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+.lightbox-close:hover {
+    color: var(--secondary);
+}
+/* =================================
+   FOOTER
+================================= */
+footer {
+    padding: 2rem;
+    text-align: center;
+    background-color: var(--dark);
+    color: white;
+}
+/* =================================
+   SOCIAL ICONS
+================================= */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+.social-icons a {
+    color: white;
+    font-size: 1.5rem;
+    transition: transform 0.3s, color 0.3s;
+}
+.social-icons a:hover {
+    color: var(--secondary);
+    transform: translateY(-4px) scale(1.15);
+}
+/* =================================
+   RESPONSIVE DESIGN
+================================= */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    nav {
+        gap: 1rem;
+    }
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 4rem;
+    }
+    .hero-text {
+        width: 100%;
+    }
+    h1 {
+        font-size: 10vw;
+    }
+    .cards {
+        flex-direction: column;
+    }
+    .card {
+        width: 100%;
+    }
+    .circle {
+        width: 60vw;
+        height: 60vw;
+    }
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 480px) {
+    .navbar {
+        padding: 1rem;
+    }
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .section {
+        padding: 4rem 5%;
+    }
+    h1 {
+        font-size: 12vw;
+    }
+}
